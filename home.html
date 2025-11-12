@@ -8,26 +8,63 @@
 <body class="bg-gradient-to-t from-[#141e30] to-[#3f5e96] h-screen">
         
     <header class="bg-[#141e30]">
-        <nav class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-[#141e30]">
-            <!-- Logo -->
-            <div class="flex items-center justify-between p-4 ">
-              <!-- Logo -->
-              <img class="w-16 sm:w-20" src="./images/logo.png" alt="logo">                        
-              <!-- Search bar -->
-              <div class="flex-1 mx-4">
-                <input
-                  type="text"
-                  class="w-full bg-white px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-[#d9e1f1]"
-                  placeholder="Search here"
-                />
-              </div> 
-              <!--favorites-->  
+<nav class="flex items-center justify-between p-2 sm:p-4 bg-[#141e30] w-full">
+  <!-- Logo -->
+  <div class="flex items-center">
+    <img class="w-12 sm:w-16" src="./images/logo.png" alt="logo">
+  </div>
 
-              
-              <!--games.-->
+  <!-- Search bar -->
+  <div class="flex-1 mx-2 sm:mx-4">
+    <input
+      type="text"
+      class="w-full bg-white px-3 py-1.5 sm:py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-[#d9e1f1] text-sm sm:text-base"
+      placeholder="Search here"
+    />
+  </div>
 
-            </div>        
-        </nav>
+  <!-- Buttons -->
+  <div class="flex items-center space-x-4">
+    <!-- Favorites -->
+    <div class="flex flex-col items-center text-gray-300 text-xs sm:text-sm">
+      <a href="./filter.html"
+         class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-pink-100 transition relative">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke-width="2"
+             stroke="currentColor"
+             class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500 hover:fill-pink-500 transition">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.015-4.5-4.5-4.5S12 5.765 12 8.25c0-2.485-2.015-4.5-4.5-4.5S3 5.765 3 8.25c0 4.364 9 11.25 9 11.25s9-6.886 9-11.25z" />
+        </svg>
+      </a>
+      <p class="mt-1 text-gray-300">My Favorites</p>
+    </div>
+
+    <!-- Games -->
+    <div class="flex flex-col items-center text-gray-300 text-xs sm:text-sm">
+      <a href="./filter.html"
+         class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-blue-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             viewBox="0 0 24 24" 
+             fill="none" 
+             stroke="currentColor" 
+             stroke-width="2" 
+             class="w-5 h-5 sm:w-6 sm:h-6 text-blue-500">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 5h6a7 7 0 0 1 7 7v2a4 4 0 0 1-4 4h-2.5l-1.5 1.5a1 1 0 0 1-1.4 0L11.5 18H9a4 4 0 0 1-4-4v-2a7 7 0 0 1 7-7z" />
+          <circle cx="9" cy="11" r="1" />
+          <circle cx="15" cy="11" r="1" />
+          <circle cx="9" cy="15" r="1" />
+          <circle cx="15" cy="15" r="1" />
+        </svg>
+      </a> 
+      <p class="mt-1 text-gray-300">Games</p>
+    </div>
+  </div>
+</nav>
+
     </header>
     <main>
         <div id="heroSlider">
@@ -53,14 +90,6 @@
             console.error('Fetch error:', error);
         }
     }
-
-    // Simple toggle menu for mobile
-    const menuBtn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
-
-    menuBtn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
 
     getGames();
 </script>
