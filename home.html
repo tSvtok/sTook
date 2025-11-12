@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-black">
-    
-    <header id="navBar">
-        <img src="./images/logo.png" alt="logo">
-        <input type="text" id="searchBar" placeholder="search here">
-        <div class="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="menu">
-            <button data-filter="category1"> All</button>
-            <button data-filter="category2">search by gender</button>
-            <button data-filter="category4"> Search by platform</button>
-            <button data-filter="category1"> Search by rates</button>
-        </div>
+<body class="bg-gradient-to-t from-[#141e30] to-[#3f5e96] h-screen">
+        
+    <header class="bg-[#141e30]">
+        <nav class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-[#141e30]">
+            <!-- Logo -->
+            <div class="flex items-center justify-between p-4 ">
+              <!-- Logo -->
+              <img class="w-16 sm:w-20" src="./images/logo.png" alt="logo">                        
+              <!-- Search bar -->
+              <div class="flex-1 mx-4">
+                <input
+                  type="text"
+                  class="w-full bg-white px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-[#d9e1f1]"
+                  placeholder="Search here"
+                />
+              </div> 
+              <!--favorites-->  
+              
+              
+              <!--games-->
+
+            </div>        
+        </nav>
     </header>
     <main>
         <div id="heroSlider">
@@ -33,5 +40,28 @@
     </main>
     <footer></footer>
 </body>
-<script></script>
+<script>
+    async function getGames() {
+        try {
+            const response = await fetch('https://debuggers-games-api.duckdns.org/api/games');
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        const data = await response.json();
+        console.log('Games data:', data.results);
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    // Simple toggle menu for mobile
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    getGames();
+</script>
 </html>
