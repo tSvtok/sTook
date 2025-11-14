@@ -4,87 +4,90 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gaming Catalog</title>
+
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <script src="./script.js" defer></script>
 </head>
+
 <body class="bg-gradient-to-t from-[#141e30] to-[#3f5e96] min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-[#141e30]">
-    <nav class="flex items-center justify-between p-2 sm:p-4 w-full">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <img class="w-12 sm:w-16" src="./images/logo.png" alt="logo">
-      </div>
+  <!-- HEADER -->
+  <header class="bg-[#141e30] sticky top-0 z-50">
+    <nav class="flex items-center justify-between p-3 sm:p-4 w-full">
 
-      <!-- Search bar -->
-      <div class="flex-1 mx-2 sm:mx-4">
+      <img class="w-12 sm:w-16" src="./images/logo.png" alt="logo">
+
+      <div class="flex-1 mx-3 sm:mx-6">
         <input type="text"
-               class="w-full bg-white px-3 py-1.5 sm:py-2 rounded-full border border-gray-300
-                      focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-[#d9e1f1] text-sm sm:text-base"
-               placeholder="Search here" />
+               placeholder="Search here"
+               class="w-full bg-white px-3 py-2 rounded-full border border-gray-300
+                      focus:ring-2 focus:ring-blue-400 hover:bg-gray-100 text-sm sm:text-base" />
       </div>
 
-      <!-- Buttons -->
-      <div class="flex items-center space-x-4">
-        <!-- Favorites -->
-        <a href="./filter.html"
-           class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-pink-100 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.015-4.5-4.5-4.5S12 5.765 12 8.25c0-2.485-2.015-4.5-4.5-4.5S3 5.765 3 8.25c0 4.364 9 11.25 9 11.25s9-6.886 9-11.25z"/>
-          </svg>
-        </a>
-        <!-- Games -->
-        <a href="./filter.html"
-           class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-400 shadow-md flex items-center justify-center hover:bg-blue-100 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 sm:w-6 sm:h-6 text-blue-500">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5h6a7 7 0 0 1 7 7v2a4 4 0 0 1-4 4h-2.5l-1.5 1.5a1 1 0 0 1-1.4 0L11.5 18H9a4 4 0 0 1-4-4v-2a7 7 0 0 1 7-7z"/>
-            <circle cx="9" cy="11" r="1"/>
-            <circle cx="15" cy="11" r="1"/>
-            <circle cx="9" cy="15" r="1"/>
-            <circle cx="15" cy="15" r="1"/>
-          </svg>
-        </a>
-      </div>
+      <a href="./favorites.html"
+         class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-pink-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+             class="w-6 h-6 text-pink-500" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 8.25c0-2.485-2.015-4.5-4.5-4.5S12 5.765 
+               12 8.25c0-2.485-2.015-4.5-4.5-4.5S3 5.765 
+               3 8.25c0 4.364 9 11.25 9 11.25s9-6.886 
+               9-11.25z"/>
+        </svg>
+      </a>
+
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="mt-4">
+  <!-- SLIDER -->
+  <section id="slider-wrapper" class="relative w-full overflow-hidden h-64 sm:h-80">
+    <div id="slider" class="flex transition-transform duration-500"></div>
 
-    <!-- Slider Wrapper -->
-    <div id="slider-wrapper" class="relative w-full overflow-hidden mb-6">
-      <div id="slider" class="flex transition-transform duration-500">
-        <!-- JS inserts slides -->
-      </div>
+    <button id="prevBtn" class="absolute top-1/2 left-2 -translate-y-1/2 bg-black bg-opacity-30 text-white w-10 h-10 rounded-full flex justify-center items-center">❮</button>
+    <button id="nextBtn" class="absolute top-1/2 right-2 -translate-y-1/2 bg-black bg-opacity-30 text-white w-10 h-10 rounded-full flex justify-center items-center">❯</button>
+  </section>
 
-      <!-- Prev/Next Buttons -->
-      <button id="prevBtn" class="absolute top-1/2 left-2 -translate-y-1/2 bg-black text-white w-10 h-10 flex justify-center items-center rounded-full shadow opacity-30">❮</button>
-      <button id="nextBtn" class="absolute top-1/2 right-2 -translate-y-1/2 bg-black text-white w-10 h-10 flex justify-center items-center rounded-full shadow opacity-30">❯</button>
+  <!-- FILTER BAR -->
+  <div id="filter-bar" class="flex justify-center items-center space-x-3 mt-6 flex-wrap">
 
-      <!-- Logo & Heading over Slider -->
-      <div class="absolute top-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-        <img src="./images/logo.png" alt="Logo" class="w-24 sm:w-32 md:w-40 lg:w-48 h-auto mb-2">
-        <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-300 uppercase tracking-widest font-mono cursor-pointer animate-pulse hover:scale-110 hover:text-white transition-all duration-500 drop-shadow-lg text-center px-2">
-          LIVING YOUR DREAM
-        </h3>
-      </div>
+    <button id="all-btn" class="filter-btn px-4 py-2 bg-white rounded-full shadow hover:bg-gray-200">
+      All
+    </button>
+
+    <button id="rating-btn" class="filter-btn px-4 py-2 bg-white rounded-full shadow hover:bg-gray-200">
+      Rating
+    </button>
+
+    <div class="relative">
+      <button id="gender-btn" class="filter-btn px-4 py-2 bg-white rounded-full shadow hover:bg-gray-200">
+        Genre
+      </button>
+
+      <input id="genre-input"
+             type="text"
+             placeholder="Enter genre..."
+             class="absolute top-12 left-1/2 -translate-x-1/2 px-4 py-2 w-40 bg-white text-gray-700 rounded-full shadow hidden" />
     </div>
+  </div>
 
-    <!-- Games Grid -->
-    <div id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4"></div>
+  <!-- GAMES GRID -->
+  <section id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4 pt-16">
+  </section>
 
-  </main>
+  <!-- PAGINATION -->
+  <div id="pagination" class="flex justify-center items-center space-x-4 p-4">
+    <button id="prevPage" class="px-4 py-2 bg-white shadow rounded hover:bg-gray-200">Prev</button>
+    <span id="pageInfo" class="font-bold text-white"></span>
+    <button id="nextPage" class="px-4 py-2 bg-white shadow rounded hover:bg-gray-200">Next</button>
+  </div>
 
   <footer class="bg-[#141e30] text-gray-300 mt-8 p-4 text-center">
-   <p class="text-sm sm:text-base">&copy; 2025 Your Game Catalog. All rights reserved.</p>
-   <div class="flex justify-center space-x-4 mt-2">
-     <a href="#" class="hover:text-white transition">Privacy Policy</a>
-     <a href="#" class="hover:text-white transition">Terms of Service</a>
-     <a href="#" class="hover:text-white transition">Contact</a>
-   </div>
+    <p>&copy; 2025 STOOK. All rights reserved.</p>
   </footer>
-
 
 </body>
 </html>
