@@ -19,6 +19,57 @@ async function getGames() {
       );
     }
 
+    // -------- Slider --------
+    const slider = document.getElementById("slider");
+    const sliderWrapper = document.getElementById("slider-wrapper");
+    let slideIndex = 0;
+    let autoSlide;
+
+    function renderSlider(games) {
+      slider.innerHTML = games.slice(0, 5) // first 5 games
+        .map(game => `
+          <div class="min-w-full flex-shrink-0">
+            <img src="${escapeHtml(game.background_image||'')}" alt="${escapeHtml(game.slug||'')}" class="w-full h-72 object-cover sm:h-80 md:h-96"/>
+          </div>
+        `).join("");
+      showSlide();
+    }
+
+    function showSlide() {
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      autoSlide = setInterval(() => {
+        slideIndex = (slideIndex + 1) % Math.min(5, results.length);
+        showSlide();
+      }, 4000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(autoSlide);
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      slideIndex = (slideIndex + 1) % Math.min(5, results.length);
+      showSlide();
+      startAutoSlide();
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      slideIndex = (slideIndex - 1 + Math.min(5, results.length)) % Math.min(5, results.length);
+      showSlide();
+      startAutoSlide();
+    });
+
+    sliderWrapper.addEventListener("mouseenter", stopAutoSlide);
+    sliderWrapper.addEventListener("mouseleave", startAutoSlide);
+
+    renderSlider(results);
+    startAutoSlide();
+
+    // -------- Render Games --------
     function renderGames(pagedList) {
       const html = pagedList.map(game => {
         const genres = Array.isArray(game.genres) ? game.genres.map(g => g.name).join(", ") : "";
@@ -82,6 +133,7 @@ async function getGames() {
       currentData = newList;
       currentPage = 1;
       paginateGames();
+      renderSlider(newList); // update slider based on filtered list
     }
 
     // -------- Filters --------
